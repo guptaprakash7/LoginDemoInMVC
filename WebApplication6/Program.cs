@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using WebApplication6.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,13 +18,18 @@ builder.Services.AddDbContext<DataContext>(opt =>
 });
 builder.Services.AddIdentityCore<IdentityUser>(opt =>
 {
-    opt.Password.RequireNonAlphanumeric = false;
 
 }).AddRoles<IdentityRole>()
 .AddSignInManager<SignInManager<IdentityUser>>()
 .AddEntityFrameworkStores<DataContext>();
 
-builder.Services.AddAuthentication();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+			.AddCookie(options =>
+			{
+				//options.AccessDeniedPath = "/account/denied";
+				//options.LoginPath = "/Login";
+				options.ExpireTimeSpan = TimeSpan.FromSeconds(50);
+			});
 
 var app = builder.Build();
 

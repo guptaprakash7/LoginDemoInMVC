@@ -64,3 +64,4 @@ D:\mydata\Learn\LoginDemoInMVC\WebApplication6\obj\Debug\net6.0\refint\WebApplic
 D:\mydata\Learn\LoginDemoInMVC\WebApplication6\obj\Debug\net6.0\WebApplication6.pdb
 D:\mydata\Learn\LoginDemoInMVC\WebApplication6\obj\Debug\net6.0\WebApplication6.genruntimeconfig.cache
 D:\mydata\Learn\LoginDemoInMVC\WebApplication6\obj\Debug\net6.0\ref\WebApplication6.dll
+D:\mydata\Learn\LoginDemoInMVC\WebApplication6\bin\Debug\net6.0\Newtonsoft.Json.dll

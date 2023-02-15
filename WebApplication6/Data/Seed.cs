@@ -7,13 +7,30 @@ namespace WebApplication6.Data
         public static async Task SeedData(DataContext context, UserManager<IdentityUser> user, RoleManager<IdentityRole> roleManager)
         {
 
+
+            if (!roleManager.Roles.Any())
+            {
+                var roles = new List<IdentityRole>
+                {
+                    new IdentityRole {Name = "Admin"},
+                    new IdentityRole {Name = "SubAdmin"},
+                    new IdentityRole {Name = "User"}
+                };
+
+                foreach (var item in roles)
+                {
+                    await roleManager.CreateAsync(item);
+                }
+
+            }
+
             if (!user.Users.Any())
             {
                 var users = new List<IdentityUser>
                 {
-                    new IdentityUser { UserName = "Arun" },
-                    new IdentityUser { UserName = "Binod" },
-                    new IdentityUser { UserName = "Kanakal" }
+                    new IdentityUser { UserName = "Arun", Email = "Arun@gmail.com" },
+                    new IdentityUser { UserName = "Binod", Email = "Binod@gmail.com" },
+                    new IdentityUser { UserName = "Kankal", Email = "Kanakal@gmail.com" }
 
                 };
 
@@ -41,21 +58,6 @@ namespace WebApplication6.Data
                 }
             }
 
-            if (!roleManager.Roles.Any())
-            {
-                var roles = new List<IdentityRole>
-                {
-                    new IdentityRole {Name = "Admin"},
-                    new IdentityRole {Name = "SubAdmin"},
-                    new IdentityRole {Name = "User"}
-                };
-
-                foreach (var item in roles)
-                {
-                    await roleManager.CreateAsync(item);
-                }
-
-            }
 
             context.SaveChangesAsync();
         }
