@@ -15,8 +15,10 @@ namespace WebApplication6.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
-		}
+            ViewData["Name"] = "Prakash";
+
+            return View();
+        }
 
 		public IActionResult Privacy()
 		{
