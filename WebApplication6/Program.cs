@@ -16,20 +16,12 @@ builder.Services.AddDbContext<DataContext>(opt =>
 {
 	opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-builder.Services.AddIdentityCore<IdentityUser>(opt =>
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
 {
 
-}).AddRoles<IdentityRole>()
-.AddSignInManager<SignInManager<IdentityUser>>()
+})
 .AddEntityFrameworkStores<DataContext>();
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-			.AddCookie(options =>
-			{
-				//options.AccessDeniedPath = "/account/denied";
-				//options.LoginPath = "/Login";
-				options.ExpireTimeSpan = TimeSpan.FromSeconds(50);
-			});
 
 var app = builder.Build();
 

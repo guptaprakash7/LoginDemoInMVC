@@ -34,7 +34,7 @@ namespace WebApplication6.Controllers
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(
-                    "Arun", model.Password,true,  false);
+                    "Arun", model.Password,false, false);
 
                 if (result.Succeeded)
                 {
